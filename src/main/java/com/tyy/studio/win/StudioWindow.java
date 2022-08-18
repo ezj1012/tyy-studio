@@ -23,7 +23,7 @@ public class StudioWindow extends JFrame {
 
     public static StudioWindow window;
 
-    private final StartingLoading starting;
+    public final StartingLoading starting;
 
     private final Toolbar toolbar;
 
@@ -68,6 +68,10 @@ public class StudioWindow extends JFrame {
         }
     }
 
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
     public static void main(String[] args) {
         StudioWindow studioWindow = new StudioWindow();
         studioWindow.setVisible(true);
@@ -75,7 +79,9 @@ public class StudioWindow extends JFrame {
     }
 
     public void setStage(AbsStage stage) {
+        stagePanel.removeAll();
         stagePanel.add(stage);
+        stagePanel.repaint();
     }
 
 }

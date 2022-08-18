@@ -49,11 +49,11 @@ public class StageCtrl {
         newStage.active();
         this.window.setStage(newStage);
         newStage.showed();
-
-        preStage.hided();
-
-        if (!preStage.needCache()) {
-            preStage.removed();
+        if (preStage != null) {
+            preStage.hided();
+            if (!preStage.needCache()) {
+                preStage.removed();
+            }
         }
     }
 

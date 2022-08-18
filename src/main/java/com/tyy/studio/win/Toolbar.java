@@ -9,9 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.tyy.studio.context.StudioConfig;
+import com.tyy.studio.context.StudioContext;
+import com.tyy.studio.fun.uml.UmlStage;
 import com.tyy.studio.win.comp.IconButton;
 import com.tyy.studio.win.comp.IconImg;
-import com.tyy.studio.win.stage.ConfigStage;
 
 public class Toolbar extends JPanel {
 
@@ -20,6 +21,8 @@ public class Toolbar extends JPanel {
     private IconButton config;
 
     private Color c1 = new Color(15, 15, 15, 128);
+
+    private StudioContext context;
 
     public Toolbar() {
         this.setBounds(0, 0, 24, 600);
@@ -30,7 +33,8 @@ public class Toolbar extends JPanel {
         config.setBounds(2, getHeight() - (22 + 5), 20, 20);
         // config.setHoverBackground(c1);
         this.add(config);
-        config.addActionListener(new StageChangeListener(ConfigStage.class));
+        // config.addActionListener(new StageChangeListener(ConfigStage.class));
+        config.addActionListener(new StageChangeListener(UmlStage.class));
     }
 
     private class StageChangeListener implements ActionListener {
@@ -43,7 +47,7 @@ public class Toolbar extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(this.clazz);
+            context.getStageCtrl().toStage(clazz);
         }
 
     }
@@ -54,6 +58,10 @@ public class Toolbar extends JPanel {
         g.setColor(c1);
         g.drawLine(getWidth() - 1, 0, getWidth() - 1, getHeight());
 
+    }
+
+    public void setContext(StudioContext context) {
+        this.context = context;
     }
 
 }

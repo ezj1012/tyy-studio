@@ -38,6 +38,7 @@ public class LocalContext implements StudioContext {
     public void initContext(StudioWindow studioWindow, ConfigurableEnvironment environment) {
         this.env = environment;
         stageCtrl = new StageCtrl(studioWindow, this);
+        studioWindow.getToolbar().setContext(this);
         try {
             String path = env.getProperty("root.path");
             rootFile = new File(path == null || "".equals(path.trim()) ? "./" : path).getCanonicalFile();

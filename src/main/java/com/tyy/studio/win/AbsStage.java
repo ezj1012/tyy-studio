@@ -5,8 +5,9 @@ import javax.swing.border.EmptyBorder;
 
 import com.tyy.studio.context.StageLifecycle;
 import com.tyy.studio.context.StudioContext;
+import com.tyy.studio.win.comp.IconImg;
 
-public class AbsStage extends JPanel implements StageLifecycle {
+public abstract class AbsStage extends JPanel implements StageLifecycle {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,5 +26,7 @@ public class AbsStage extends JPanel implements StageLifecycle {
     public boolean needCache() {
         return false;
     }
+
+    public abstract IconImg getIcon();
 
 }

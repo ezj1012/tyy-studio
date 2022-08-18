@@ -4,18 +4,11 @@ import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication()
 @Configuration
 public class StudioMain {
-
-    @Bean
-    public AA a() {
-        System.out.println("init aa");
-        return new AA();
-    }
 
     public static void main(String[] args) {
         // LocalDateTime date = LocalDateTime.now();

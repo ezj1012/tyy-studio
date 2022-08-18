@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import com.tyy.studio.context.StudioConfig;
 import com.tyy.studio.win.AbsStage;
+import com.tyy.studio.win.comp.IconImg;
 
 public class StartingLoading extends AbsStage {
 
@@ -23,6 +24,11 @@ public class StartingLoading extends AbsStage {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(favicon.getImage(), (this.getWidth() - favicon.getIconWidth()) / 2 - 12, (this.getHeight() - favicon.getIconHeight()) / 2 - 20, this);
+    }
+
+    @Override
+    public IconImg getIcon() {
+        return null;
     }
 
 }
