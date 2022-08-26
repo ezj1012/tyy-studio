@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.tyy.studio.context.StudioConfig;
 import com.tyy.studio.context.StudioContext;
+import com.tyy.studio.fun.markdown.MDStage;
 import com.tyy.studio.fun.uml.UmlStage;
 import com.tyy.studio.win.comp.IconButton;
 import com.tyy.studio.win.comp.IconImg;
@@ -34,7 +35,7 @@ public class Toolbar extends JPanel {
         // config.setHoverBackground(c1);
         this.add(config);
         // config.addActionListener(new StageChangeListener(ConfigStage.class));
-        config.addActionListener(new StageChangeListener(UmlStage.class));
+        config.addActionListener(new StageChangeListener(MDStage.class));
     }
 
     private class StageChangeListener implements ActionListener {

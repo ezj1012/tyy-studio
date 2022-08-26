@@ -7,6 +7,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 
 import com.tyy.studio.context.StageCtrl;
 import com.tyy.studio.context.StudioContext;
+import com.tyy.studio.fun.markdown.MDStage;
 import com.tyy.studio.utils.SystemUtils;
 import com.tyy.studio.win.StudioWindow;
 import com.tyy.studio.win.stage.ConfigStage;
@@ -44,12 +45,12 @@ public class LocalContext implements StudioContext {
             rootFile = new File(path == null || "".equals(path.trim()) ? "./" : path).getCanonicalFile();
         } catch (IOException e) {
             publishException(e);
-            getStageCtrl().toStage(ConfigStage.class);
+            getStageCtrl().toStage(MDStage.class);
             return;
         }
         LocalProperties localProps = getLocalProps();
         if (localProps == null) {
-            getStageCtrl().toStage(ConfigStage.class);
+            getStageCtrl().toStage(MDStage.class);
             return;
         }
     }
