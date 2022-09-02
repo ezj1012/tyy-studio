@@ -61,6 +61,7 @@ public class Radar {
                 Entry next = iterator.next();
                 if (Objects.equals(next.name, name)) {
                     iterator.remove();
+                    refreshPolygon();
                     return true;
                 }
             }
@@ -78,6 +79,9 @@ public class Radar {
                     r = true;
                     iterator.remove();
                 }
+            }
+            if (r) {
+                refreshPolygon();
             }
             return r;
         }
@@ -130,11 +134,20 @@ public class Radar {
         }
     }
 
+    public int getSize() {
+        return entry.size();
+    }
+
     public Polygon getPolygon() {
         synchronized (sync) {
             return p;
         }
     }
+    
+    public void paint(Graphics g) {
+        
+    }
+    
 
     public static class Entry {
 
@@ -189,7 +202,8 @@ public class Radar {
     }
 
     private int[] getPoint(int a0) {
-        a0 = a0 < 90 ? 360 - a0 : a0 - 90;
+        a0 = a0 < 90 ? 360 + a0 - 90 : a0 - 90;
+        System.out.println(a0);
         int[] xy = new int[2];
         xy[0] = (int) (x + r * Math.cos(a0 * Math.PI / 180));
         xy[1] = (int) (y + r * Math.sin(a0 * Math.PI / 180));
@@ -207,7 +221,7 @@ public class Radar {
         System.out.println(x1 + " " + y1);
         JFrame a = new JFrame();
         a.getContentPane().setLayout(null);
-        Radar radar = new Radar(500, 500, 100);
+        Radar radar = new Radar(300, 300, 100);
         JPanel comp = new JPanel() {
 
             @Override
@@ -215,17 +229,15 @@ public class Radar {
                 super.paintComponent(g);
                 g.setColor(Color.white);
                 g.fillRect(0, 0, 1000, 600);
-                g.setColor(Color.BLACK);
-                g.setColor(Color.red);
-                g.fillPolygon(radar.getPolygon());
+                radar.paint(g);
             }
 
         };
         comp.setLayout(null);
 
-        int ii = 0;
         JButton ad = new JButton("添加");
         JButton de = new JButton("减少");
+        JButton re = new JButton("刷新");
 
         ad.addActionListener(e -> {
             radar.add("你好", 100, 100, "你好");
@@ -236,11 +248,17 @@ public class Radar {
             radar.removeFirst("你好");
             a.repaint();
         });
+        re.addActionListener(e -> {
+            radar.refreshPolygon();
+            a.repaint();
+        });
 
         ad.setBounds(10, 10, 100, 30);
         de.setBounds(10, 50, 100, 30);
+        re.setBounds(10, 90, 100, 30);
         comp.add(ad);
         comp.add(de);
+        comp.add(re);
 
         comp.setBounds(0, 0, 600, 600);
         a.getContentPane().add(comp);
