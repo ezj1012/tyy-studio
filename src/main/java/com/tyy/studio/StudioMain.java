@@ -4,10 +4,8 @@ import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.Configuration;
 
 @SpringBootApplication()
-@Configuration
 public class StudioMain {
 
     public static void main(String[] args) {
@@ -16,8 +14,10 @@ public class StudioMain {
         // System.out.println(between.toDays());
         // System.out.println(between.toDays()/365);
         new SpringApplicationBuilder(StudioMain.class).bannerMode(Mode.OFF)
-                // //
-                .web(WebApplicationType.NONE).headless(false)
+                //
+                // .web(WebApplicationType.SERVLET)
+                //
+                .headless(false)
                 // //
                 .run(args);
 
